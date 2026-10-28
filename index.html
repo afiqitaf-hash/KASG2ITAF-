@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kas Kelas</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#0f2a24;--mut:#5f7a72;--bg:#f3f6f4;--card:#fff;--pri:#0f766e;--pri2:#14b8a6;--gold:#f2b84b;--rose:#e0556b;--line:#e1e9e5;color-scheme:light}
+*{box-sizing:border-box;margin:0}
+html,body{background:var(--bg);color:var(--ink);font-family:'Plus Jakarta Sans',system-ui,-apple-system,Segoe UI,Roboto,sans-serif;font-size:15px;line-height:1.55}
+body{padding:0 16px 64px;background:radial-gradient(900px 380px at 85% -80px,#d5ebe4 0,transparent 70%),var(--bg)}
+.wrap{max-width:820px;margin:0 auto}
+header{display:flex;justify-content:space-between;align-items:center;padding:20px 0 16px}
+.brand{display:flex;align-items:center;gap:10px}
+.brand i{width:34px;height:34px;border-radius:11px;background:linear-gradient(135deg,var(--pri),var(--pri2));position:relative;box-shadow:0 6px 14px rgba(15,118,110,.3)}
+.brand i::after{content:"";position:absolute;left:9px;top:9px;width:16px;height:16px;border:3px solid #fff;border-radius:50%;border-right-color:var(--gold)}
+.brand b{font-size:19px;font-weight:800;letter-spacing:-.3px}
+button{font:inherit;cursor:pointer;border:0;border-radius:12px;padding:11px 18px;font-weight:700;background:var(--pri);color:#fff;transition:transform .12s,box-shadow .2s,background .2s;box-shadow:0 4px 12px rgba(15,118,110,.22)}
+button:hover{background:#0d655e}button:active{transform:scale(.97)}button:disabled{opacity:.5}
+button.ghost{background:#e3f1ed;color:var(--pri);box-shadow:none}
+button.ghost:hover{background:#d3e9e3}
+button.sm{padding:7px 13px;font-size:13px;border-radius:10px}
+button.rose{background:#fcebee;color:#b83249;box-shadow:none}
+button:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible{outline:3px solid #99e0d6;outline-offset:2px}
+.hero{position:relative;overflow:hidden;background:linear-gradient(140deg,#0a3b37 0,#0f766e 62%,#16a394 100%);color:#fff;border-radius:30px;padding:30px 26px 26px;margin-bottom:18px;box-shadow:0 18px 40px rgba(10,59,55,.28)}
+.hero::before{content:"";position:absolute;right:-70px;top:-70px;width:230px;height:230px;border-radius:50%;background:radial-gradient(circle,rgba(242,184,75,.55),rgba(242,184,75,0) 70%)}
+.hero::after{content:"";position:absolute;right:30px;bottom:-90px;width:200px;height:200px;border-radius:50%;border:34px solid rgba(255,255,255,.07)}
+.hero small{position:relative;opacity:.85;font-weight:600;letter-spacing:.4px;text-transform:uppercase;font-size:12px}
+.hero .big{position:relative;font-size:clamp(36px,10vw,58px);font-weight:800;letter-spacing:-1.5px;line-height:1.1;margin:6px 0 20px}
+.pills{position:relative;display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.pill{background:rgba(255,255,255,.13);border:1px solid rgba(255,255,255,.18);border-radius:16px;padding:11px 14px;font-weight:700;font-size:14px;backdrop-filter:blur(6px)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:24px;padding:22px;margin-bottom:16px;box-shadow:0 10px 30px rgba(15,42,36,.05)}
+h2{font-size:17px;font-weight:800;margin-bottom:12px;letter-spacing:-.2px;display:flex;align-items:center;gap:10px}
+h2::before{content:"";width:6px;height:18px;border-radius:4px;background:linear-gradient(var(--pri2),var(--gold))}
+.row{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:13px 0;border-bottom:1px dashed var(--line)}
+.row:last-child{border-bottom:0}
+.row .l{min-width:0;flex:1}.row .l div{overflow-wrap:anywhere}
+.row .d{color:var(--mut);font-size:12px}
+.in{color:#0b8a6f;font-weight:800;white-space:nowrap;background:#e4f6f0;padding:4px 10px;border-radius:10px}
+.out{color:#c23a52;font-weight:800;white-space:nowrap;background:#fcebee;padding:4px 10px;border-radius:10px}
+label{display:block;font-size:13px;font-weight:700;margin:14px 0 5px;color:var(--mut)}
+input,textarea,select{width:100%;font:inherit;padding:12px 14px;border:1.5px solid var(--line);border-radius:14px;background:#fafcfb;color:var(--ink);transition:border-color .2s,background .2s}
+input:focus,textarea:focus,select:focus{border-color:var(--pri2);background:#fff}
+textarea{min-height:88px;resize:vertical}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:520px){.g2{grid-template-columns:1fr}.hero{padding:26px 20px 22px}.card{padding:18px}}
+.tabs{display:flex;gap:6px;overflow-x:auto;padding:6px;margin-bottom:16px;background:#e6efeb;border-radius:18px;-webkit-overflow-scrolling:touch}
+.tabs button{background:transparent;color:var(--mut);white-space:nowrap;box-shadow:none;padding:9px 15px;border-radius:13px;font-size:14px}
+.tabs button:hover{background:rgba(255,255,255,.5)}
+.tabs button.on{background:#fff;color:var(--pri);box-shadow:0 3px 10px rgba(15,42,36,.1)}
+.tag{font-size:11px;font-weight:800;border-radius:99px;padding:3px 10px;margin-left:4px;vertical-align:middle}
+.tag.ok{background:#dcf5ec;color:#0a7a5f}.tag.no{background:#fff1d6;color:#9a6700}
+.acts{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end}
+.empty{color:var(--mut);padding:18px 0;text-align:center}
+.bar{height:12px;background:#e3eee9;border-radius:99px;overflow:hidden;margin:10px 0 4px}
+.bar i{display:block;height:100%;background:linear-gradient(90deg,var(--pri2),var(--gold));border-radius:99px;transition:width .5s}
+.modal{position:fixed;inset:0;background:rgba(10,30,26,.55);backdrop-filter:blur(4px);display:none;align-items:center;justify-content:center;padding:16px;z-index:9}
+.modal.on{display:flex}
+.modal .card{width:100%;max-width:380px;margin:0;box-shadow:0 24px 60px rgba(0,0,0,.3)}
+#toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:var(--ink);color:#fff;padding:11px 20px;border-radius:99px;font-size:14px;font-weight:600;opacity:0;pointer-events:none;transition:opacity .25s;z-index:10;max-width:90vw;text-align:center}
+#toast.on{opacity:1}
+.note{background:#fff6e0;color:#8a5a00;border:1px solid #f6e2b0;border-radius:16px;padding:11px 15px;font-size:13px;margin-bottom:14px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header><div class="brand"><i></i><b>Kas Kelas</b></div><div id="hbtn"></div></header>
+  <div id="note"></div>
+  <main id="app"><div class="empty">Memuat data…</div></main>
+</div>
+
+<div class="modal" id="mlogin" role="dialog" aria-modal="true" aria-label="Login admin">
+  <div class="card">
+    <h2>Login admin</h2>
+    <label for="pw">Password</label>
+    <input id="pw" type="password" autocomplete="current-password">
+    <div class="acts" style="margin-top:16px"><button class="ghost" id="cancel">Batal</button><button id="dologin">Masuk</button></div>
+  </div>
+</div>
+<div id="toast" role="status"></div>
+
+<script>
+// ====== PENGATURAN ======
+// Tempel URL Web App Google Apps Script (yang berakhiran /exec) di bawah ini.
+// Jika dikosongkan, web berjalan di MODE DEMO (data tersimpan di browser, password: admin123).
+const API_DEFAULT = "https://script.google.com/macros/s/AKfycbwIGc7TpdzWxpp2Ga0wlIKfUBtta6YLygwQfQrkQ9SMmDMFrgZjEFHLEqBQg_bPNYL5/exec";
+let API_URL = API_DEFAULT;
+try { API_URL = localStorage.getItem('kk_url') || API_DEFAULT; } catch (e) {}
+const DAFTAR = [
+['Adnan Al Gifakhri Karinda','+6285181961638'],['Aiman','+62896010300299'],['Arya Bumi Rahman','+6281412376048'],
+['Faith Rasyid Athari','+6281254424443'],['Fathi Qudsi Rayyan','+6285165598995'],['Fathurahman C.M','+6281930051601'],
+['Hisyam Ahmad Abqary Azzam','+6287870810102'],['Labiib Rikza Fairuz','+6285691951363'],['Afik','+62895078667866'],
+['Muhammad','+6281903373733'],['Abror','+628973346226'],['Ayman Abdulkareem','+6289675505869'],['Zidda','+6282277704345'],
+['Harist','+6288290835432'],['Nabil','+6281399527413'],['Rasyid Khoir Siregar','+6281399909501'],['Abyan','+6282258021957']];
+// ========================
+
+const $ = s => document.querySelector(s);
+const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const rp = n => 'Rp' + new Intl.NumberFormat('id-ID').format(+n || 0);
+const tgl = t => { try { return new Date(+t).toLocaleDateString('id-ID', {day:'numeric', month:'short', year:'numeric'}); } catch (e) { return ''; } };
+let S = {siswa: [], kas: [], saran: []}, pw = '', admin = false, tab = 'siswa';
+
+function toast(m) { const t = $('#toast'); t.textContent = m; t.classList.add('on'); clearTimeout(toast.h); toast.h = setTimeout(() => t.classList.remove('on'), 2600); }
+
+// ---------- Penyimpanan demo (lokal) ----------
+let mem = null;
+const store = {
+  get() { try { const r = localStorage.getItem('kk'); if (r) return JSON.parse(r); } catch (e) {} return mem || (mem = seed()); },
+  set(v) { mem = v; try { localStorage.setItem('kk', JSON.stringify(v)); } catch (e) {} }
+};
+function seed() {
+  const n = Date.now(), d = 864e5;
+  return {pw: 'admin123',
+    siswa: DAFTAR.map(x => ({nama: x[0], hp: x[1], status: 'Belum'})),
+    kas: [{t:n-9*d,jenis:'Masuk',ket:'Iuran bulan ini',jumlah:100000},{t:n-6*d,jenis:'Keluar',ket:'Beli spidol & penghapus',jumlah:25000},{t:n-2*d,jenis:'Keluar',ket:'Fotokopi tugas kelompok',jumlah:15000}],
+    saran: []};
+}
+function local(a, d) {
+  const db = store.get();
+  if (a == 'data') return {siswa: db.siswa, kas: db.kas};
+  if (a == 'saranBaru') { db.saran.unshift({t: Date.now(), nama: d.nama || '', saran: d.saran, alasan: d.alasan}); store.set(db); return {ok: 1}; }
+  if (d.password !== db.pw) return {error: 'Password salah'};
+  switch (a) {
+    case 'login': return {ok: 1};
+    case 'getSaran': return {saran: db.saran};
+    case 'addSiswa': db.siswa.push({nama: d.nama, hp: d.hp || '', status: 'Belum'}); break;
+    case 'toggle': { const s = db.siswa.find(x => x.nama == d.nama); if (s) s.status = s.status == 'Lunas' ? 'Belum' : 'Lunas'; break; }
+    case 'hapusSiswa': db.siswa = db.siswa.filter(x => x.nama != d.nama); break;
+    case 'addKas': db.kas.unshift({t: Date.now(), jenis: d.jenis, ket: d.ket, jumlah: +d.jumlah}); break;
+    case 'resetBulan': db.siswa.forEach(s => s.status = 'Belum'); break;
+    case 'ubahPw': db.pw = d.baru; break;
+  }
+  store.set(db); return {ok: 1};
+}
+
+// ---------- Panggilan ke Google Sheets / demo ----------
+async function call(a, d = {}) {
+  try {
+    if (!API_URL) return local(a, d);
+    const ctl = new AbortController(), to = setTimeout(() => ctl.abort(), 25000);
+    const opt = a == 'data' ? {signal: ctl.signal} : {method: 'POST', headers: {'Content-Type': 'text/plain;charset=utf-8'}, body: JSON.stringify({action: a, ...d}), signal: ctl.signal};
+    const r = await fetch(API_URL, opt); clearTimeout(to);
+    return await r.json();
+  } catch (e) { toast('Gagal terhubung. Periksa internet atau URL Google Sheet.'); return {error: 'Koneksi gagal'}; }
+}
+async function adm(a, d = {}) {
+  const r = await call(a, {...d, password: pw});
+  if (r.error) { toast(r.error); return null; }
+  return r;
+}
+async function load() {
+  const r = await call('data');
+  if (!r.error) { S.siswa = r.siswa || []; S.kas = r.kas || []; }
+  if (admin) { const q = await adm('getSaran'); if (q) S.saran = q.saran || []; }
+  render();
+}
+
+// ---------- Tampilan ----------
+function totals() {
+  let m = 0, k = 0;
+  S.kas.forEach(x => x.jenis == 'Masuk' ? m += +x.jumlah : k += +x.jumlah);
+  return {m, k, saldo: m - k};
+}
+function render() {
+  $('#hbtn').innerHTML = admin ? '<button class="ghost sm" id="bpub">Lihat publik</button> <button class="rose sm" id="bout">Keluar</button>' : '<button class="ghost sm" id="blogin">🔒 Admin</button>';
+  $('#note').innerHTML = API_URL ? '' : '<div class="note">Mode demo: data hanya tersimpan di browser ini. Buka menu Database setelah login admin untuk menempel URL Google Sheet. Password demo: admin123</div>';
+  $('#app').innerHTML = admin ? adminView() : publicView();
+}
+function riwayat() {
+  if (!S.kas.length) return '<div class="empty">Belum ada catatan kas.</div>';
+  return S.kas.map(x => `<div class="row"><div class="l"><div>${esc(x.ket)}</div><div class="d">${tgl(x.t)}</div></div><div class="${x.jenis == 'Masuk' ? 'in' : 'out'}">${x.jenis == 'Masuk' ? '+' : '−'}${rp(x.jumlah)}</div></div>`).join('');
+}
+function publicView() {
+  const t = totals();
+  return `<section class="hero"><small>Saldo kas kelas saat ini</small><div class="big">${rp(t.saldo)}</div>
+    <div class="pills"><span class="pill">Masuk ${rp(t.m)}</span><span class="pill">Terpakai ${rp(t.k)}</span></div></section>
+  <section class="card"><h2>Uang kas dipakai untuk apa saja</h2>${riwayat()}</section>
+  <section class="card"><h2>Beri saran untuk uang kas</h2>
+    <form id="fsaran">
+      <label for="sn">Nama (boleh dikosongkan)</label><input id="sn" maxlength="40">
+      <label for="ss">Saran kamu</label><textarea id="ss" required maxlength="300" placeholder="Contoh: beli tempat sampah baru"></textarea>
+      <label for="sa">Alasannya</label><textarea id="sa" required maxlength="300" placeholder="Kenapa saran ini penting?"></textarea>
+      <div style="margin-top:14px"><button type="submit">Kirim saran</button></div>
+    </form></section>`;
+}
+function adminView() {
+  const tabs = [['siswa','Siswa & tagihan'],['kas','Catatan kas'],['saran','Saran'],['akun','Password'],['db','Database']];
+  const body = {siswa: tabSiswa, kas: tabKas, saran: tabSaran, akun: tabAkun, db: tabDb}[tab]();
+  return `<div class="tabs">${tabs.map(([k, v]) => `<button data-tab="${k}" class="${tab == k ? 'on' : ''}">${v}</button>`).join('')}</div>${body}`;
+}
+function tabSiswa() {
+  const belum = S.siswa.filter(s => s.status != 'Lunas'), lunas = S.siswa.length - belum.length;
+  const pct = S.siswa.length ? Math.round(lunas / S.siswa.length * 100) : 0;
+  return `<section class="card"><h2>Tagihan kas</h2>
+    <div>${lunas} dari ${S.siswa.length} siswa sudah bayar (${pct}%)</div><div class="bar"><i style="width:${pct}%"></i></div>
+    <div class="acts" style="justify-content:flex-start;margin-top:10px">
+      <button class="sm" data-act="remindAll">Ingatkan semua yang belum bayar</button>
+      <button class="ghost sm" data-act="reset">Mulai periode baru</button></div></section>
+  <section class="card"><h2>Daftar siswa</h2>
+    ${S.siswa.length ? S.siswa.map(s => `<div class="row"><div class="l"><div><b>${esc(s.nama)}</b> <span class="tag ${s.status == 'Lunas' ? 'ok' : 'no'}">${esc(s.status)}</span></div>${s.hp ? `<div class="d">${esc(s.hp)}</div>` : ''}</div>
+      <div class="acts"><button class="ghost sm" data-act="toggle" data-n="${esc(s.nama)}">${s.status == 'Lunas' ? 'Batalkan' : 'Tandai lunas'}</button>
+      ${s.status != 'Lunas' ? `<button class="sm" data-act="remind" data-n="${esc(s.nama)}">Ingatkan</button>` : ''}
+      <button class="rose sm" data-act="del" data-n="${esc(s.nama)}">Hapus</button></div></div>`).join('') : '<div class="empty">Belum ada siswa.</div>'}</section>
+  <section class="card"><h2>Tambah siswa</h2><form id="fsiswa">
+    <div class="g2"><div><label for="an">Nama</label><input id="an" required maxlength="40"></div>
+    <div><label for="ah">No. WhatsApp (opsional)</label><input id="ah" inputmode="tel" placeholder="08123456789"></div></div>
+    <div style="margin-top:14px"><button type="submit">Tambah siswa</button></div></form></section>`;
+}
+function tabKas() {
+  return `<section class="card"><h2>Catat uang masuk / keluar</h2><form id="fkas">
+    <div class="g2"><div><label for="kj">Jenis</label><select id="kj"><option>Masuk</option><option>Keluar</option></select></div>
+    <div><label for="kn">Jumlah (Rp)</label><input id="kn" type="number" inputmode="numeric" min="1" required></div></div>
+    <label for="kk">Keterangan</label><input id="kk" required maxlength="80" placeholder="Contoh: beli sapu">
+    <div style="margin-top:14px"><button type="submit">Simpan catatan</button></div></form></section>
+  <section class="card"><h2>Riwayat kas</h2>${riwayat()}</section>`;
+}
+function tabSaran() {
+  return `<section class="card"><h2>Saran dari teman sekelas</h2>${S.saran.length ? S.saran.map(x => `<div class="row"><div class="l"><div><b>${esc(x.saran)}</b></div><div>Alasan: ${esc(x.alasan)}</div><div class="d">${esc(x.nama || 'Anonim')} · ${tgl(x.t)}</div></div></div>`).join('') : '<div class="empty">Belum ada saran masuk.</div>'}</section>`;
+}
+function tabDb() {
+  return `<section class="card"><h2>Hubungkan Google Sheet</h2>
+    <div class="d" style="color:var(--mut);font-size:13px">Status: ${API_URL ? 'terhubung ke Google Sheet' : 'mode demo (belum terhubung)'}</div>
+    <form id="furl"><label for="url">URL Web App (berakhiran /exec)</label>
+    <input id="url" type="url" inputmode="url" placeholder="https://script.google.com/macros/s/.../exec" value="${esc(API_URL)}">
+    <div class="acts" style="justify-content:flex-start;margin-top:14px"><button type="submit">Simpan URL</button><button type="button" class="ghost" data-act="urlhapus">Pakai mode demo</button></div></form>
+    <div class="note" style="margin:14px 0 0">URL ini hanya tersimpan di perangkat ini. Agar semua teman melihat data yang sama, tulis juga URL-nya di <b>API_DEFAULT</b> pada file kas-kelas.html.</div></section>
+  <section class="card"><h2>Impor daftar siswa</h2><div style="font-size:14px;color:var(--mut)">Masukkan ${DAFTAR.length} siswa beserta nomor teleponnya ke database. Siswa yang sudah ada dilewati.</div>
+    <div style="margin-top:12px"><button data-act="impor">Impor ${DAFTAR.length} siswa</button></div></section>`;
+}
+function tabAkun() {
+  return `<section class="card"><h2>Ubah password admin</h2><form id="fpw">
+    <label for="p1">Password baru</label><input id="p1" type="password" minlength="4" required autocomplete="new-password">
+    <label for="p2">Ulangi password baru</label><input id="p2" type="password" minlength="4" required autocomplete="new-password">
+    <div style="margin-top:14px"><button type="submit">Simpan password</button></div></form></section>`;
+}
+
+// ---------- Aksi ----------
+function pesan(n) { return `Halo ${n}, ini pengingat dari bendahara: uang kas kelas kamu belum dibayar ya. Terima kasih 🙏`; }
+function wa(hp, teks) {
+  let h = String(hp).replace(/\D/g, ''); if (h.startsWith('0')) h = '62' + h.slice(1);
+  window.open('https://wa.me/' + h + '?text=' + encodeURIComponent(teks), '_blank');
+}
+async function salin(t) {
+  try { await navigator.clipboard.writeText(t); toast('Pesan pengingat disalin'); }
+  catch (e) { prompt('Salin pesan ini:', t); }
+}
+document.addEventListener('click', async e => {
+  const b = e.target.closest('button'); if (!b) return;
+  if (b.id == 'blogin') { $('#mlogin').classList.add('on'); setTimeout(() => $('#pw').focus(), 50); }
+  else if (b.id == 'cancel') $('#mlogin').classList.remove('on');
+  else if (b.id == 'dologin') {
+    pw = $('#pw').value; const r = await adm('login');
+    if (r) { admin = true; tab = 'siswa'; $('#mlogin').classList.remove('on'); $('#pw').value = ''; await load(); toast('Masuk sebagai admin'); } else pw = '';
+  }
+  else if (b.id == 'bout' || b.id == 'bpub') { if (b.id == 'bout') { admin = false; pw = ''; } else admin = false; render(); if (b.id == 'bpub') { window.__back = true; } }
+  else if (b.dataset.tab) { tab = b.dataset.tab; render(); }
+  else if (b.dataset.act) {
+    const a = b.dataset.act, n = b.dataset.n;
+    if (a == 'toggle') { if (await adm('toggle', {nama: n})) load(); }
+    else if (a == 'del') { if (confirm('Hapus ' + n + '?') && await adm('hapusSiswa', {nama: n})) load(); }
+    else if (a == 'reset') { if (confirm('Semua siswa jadi "Belum" lagi?') && await adm('resetBulan')) load(); }
+    else if (a == 'impor') {
+      b.disabled = true; let n = 0;
+      for (const x of DAFTAR) { if (S.siswa.some(s => s.nama == x[0])) continue; if (!await adm('addSiswa', {nama: x[0], hp: x[1]})) break; n++; }
+      b.disabled = false; toast(n + ' siswa ditambahkan'); load();
+    }
+    else if (a == 'urlhapus') { try { localStorage.removeItem('kk_url'); } catch (e) {} API_URL = API_DEFAULT; admin = false; pw = ''; await load(); toast('Kembali ke mode demo'); }
+    else if (a == 'remind') { const s = S.siswa.find(x => x.nama == n); s && s.hp ? wa(s.hp, pesan(n)) : salin(pesan(n)); }
+    else if (a == 'remindAll') {
+      const l = S.siswa.filter(s => s.status != 'Lunas').map(s => s.nama);
+      l.length ? salin('Pengingat uang kas kelas 🙏\nYang belum bayar: ' + l.join(', ') + '.\nMohon segera dibayar ya, terima kasih!') : toast('Semua siswa sudah lunas 🎉');
+    }
+  }
+});
+document.addEventListener('submit', async e => {
+  e.preventDefault(); const f = e.target.id;
+  if (f == 'fsaran') {
+    const r = await call('saranBaru', {nama: $('#sn').value.trim(), saran: $('#ss').value.trim(), alasan: $('#sa').value.trim()});
+    if (!r.error) { e.target.reset(); toast('Terima kasih, saranmu terkirim!'); }
+  } else if (f == 'fsiswa') {
+    if (await adm('addSiswa', {nama: $('#an').value.trim(), hp: $('#ah').value.trim()})) { toast('Siswa ditambahkan'); load(); }
+  } else if (f == 'fkas') {
+    if (await adm('addKas', {jenis: $('#kj').value, jumlah: $('#kn').value, ket: $('#kk').value.trim()})) { toast('Catatan tersimpan'); load(); }
+  } else if (f == 'furl') {
+    const u = $('#url').value.trim();
+    if (u && !/^https:\/\/script\.google\.com\/.+\/exec/.test(u)) return toast('URL harus dari Apps Script dan berakhiran /exec');
+    try { localStorage.setItem('kk_url', u); } catch (e) {}
+    API_URL = u || API_DEFAULT; admin = false; pw = ''; await load(); toast('URL tersimpan. Login lagi dengan password dari Sheet.');
+  } else if (f == 'fpw') {
+    if ($('#p1').value !== $('#p2').value) return toast('Password baru tidak sama');
+    const baru = $('#p1').value;
+    if (await adm('ubahPw', {baru})) { pw = baru; e.target.reset(); toast('Password diubah'); }
+  }
+});
+$('#pw').addEventListener('keydown', e => { if (e.key == 'Enter') $('#dologin').click(); });
+load();
+</script>
+</body>
+</html>
